@@ -1,0 +1,33 @@
+<b>Name:</b><td><%= @place.name%></td><br>
+<b>Address:</b><td><%= @place.address%></td><br>
+<b>City:</b><td><%= @place.city%></td><br>
+<b>Category:</b><td><%= @place.category.name%></td><br>
+
+
+<% @place.comments.each do |comment| %>
+    <p>
+      <strong>Comment:</strong>
+      <%= comment.body %>
+    </p>
+    <%= link_to 'Destroy Comment', [comment.place, comment],
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+<% end %>
+<p>
+
+</p>
+<h2>Add a comment:</h2>
+<%= form_for([@place, @place.comments.build]) do |f| %>
+
+
+    <p>
+      <%= f.label :Comment  %>
+      <%= f.text_field :body, size: 70%>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>
+
+
+<a href="/places">Back</a>
