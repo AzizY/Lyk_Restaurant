@@ -4,12 +4,28 @@
       <%= f.text_field :name %>
     </p>
     <p>
+      <%= f.label :phone_number %><br>
+      <%= f.text_field :phone_number %>
+    </p>
+    <p>
+      <%= f.label :address %><br>
+      <%= f.text_field :address %>
+    </p>
+    <p>
       <%= f.label :city %><br>
       <%= f.text_field :city %>
     </p>
     <p>
-      <%= f.label :phone_number %><br>
-      <%= f.text_field :phone_number %>
+      <%= f.label :email %><br>
+      <%= f.text_field :contact_mail %>
+    </p>
+    <p>
+      <%= f.label :description %><br>
+      <%= f.text_field :description %>
+    </p>
+    <p>
+      <%= f.label :established_at %><br>
+      <%= f.date_select :estanlished_at %>
     </p>
     <p>
     <%= f.select :category_id, @categories %>

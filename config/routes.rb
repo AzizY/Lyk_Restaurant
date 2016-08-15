@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :places do
-    resources :comments
+    resources :comments, only: [:create, :destroy]
   end
   resources :categories, only: [:show, :index]
   root 'places#index'

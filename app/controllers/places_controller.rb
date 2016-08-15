@@ -29,7 +29,7 @@ class PlacesController < ApplicationController
   end
 
   def update
-    if @place.update(place_params)
+    if @place = Place.update(place_params)
       redirect_to place_path(@place)
     else
       load_categories
@@ -52,6 +52,6 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
   end
   def place_params
-    params.require(:place).permit(:name, :address, :city, :phone_number,:contact_mail, :description, :category_id)
+    params.require(:place).permit(:name, :address, :city, :phone_number,:contact_mail, :description, :estanlished_at, :category_id)
   end
 end

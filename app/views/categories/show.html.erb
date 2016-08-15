@@ -4,5 +4,7 @@
     <b>ID </b><%= place.id %><br>
     <b>Title </b>
     <%= link_to place.name, place_path(place) %><br>
-    <b>Description </b><%= place.description %><br>
+    <b>Description </b><%= place.description %><br><hr>
 <% end %>
+
+<%=link_to "Go Back to Places", places_path%>

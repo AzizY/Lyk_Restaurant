@@ -1,6 +1,6 @@
 class Place < ApplicationRecord
   validates :name, presence: true, uniqueness: true
-  validates :phone_number, length: { minimum: 10}
+  validates :phone_number, length: { minimum: 5}
   validates :city, presence: true
 
 

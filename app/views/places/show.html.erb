@@ -1,23 +1,27 @@
 <b>Name:</b><td><%= @place.name%></td><br>
+<b>Phone Number:</b><td><%= @place.phone_number%></td><br>
 <b>Address:</b><td><%= @place.address%></td><br>
 <b>City:</b><td><%= @place.city%></td><br>
 <b>Category:</b><td><%= @place.category.name%></td><br>
+<b>E-mail:</b><td><%= @place.contact_mail%></td><br>
+<b>Established at:</b><td><%= @place.estanlished_at%></td><br>
 
 
 <% @place.comments.each do |comment| %>
     <p>
       <strong>Comment:</strong>
       <%= comment.body %>
-    </p>
+
     <%= link_to 'Destroy Comment', [comment.place, comment],
                 method: :delete,
-                data: { confirm: 'Are you sure?' } %>
+                data: { confirm: 'Are you sure?' } %></p>
 <% end %>
 <p>
 
 </p>
 <h2>Add a comment:</h2>
-<%= form_for([@place, @place.comments.build]) do |f| %>
+<div class="panel-body">
+<%= form_for([@place, @place.comments.new]) do |f| %>
 
 
     <p>
@@ -28,6 +32,6 @@
       <%= f.submit %>
     </p>
 <% end %>
-
+</div>
 
 <a href="/places">Back</a>
