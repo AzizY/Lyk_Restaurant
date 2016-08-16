@@ -7,18 +7,40 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-    <% if current_owner.present? %>
-      <%= current_owner.email %>
-      <%= link_to "Log Out",  destroy_owner_session_path, method: :delete%>
-    <% elsif current_customer.present? %>
-    <%= current_customer.email %>
-    <%= link_to "Log Out",  destroy_customer_session_path, method: :delete%>
-    <% else %>
-    <%= link_to "Owner Log In",  new_owner_session_path%>
-    <%= link_to "Owner Sign Up",  new_owner_registration_path%>
-    <%= link_to "Customer Log In",  new_customer_session_path%>
-    <%= link_to "Customer Sign Up",  new_customer_registration_path%>
-<% end %>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+
+        <a class="navbar-brand" href="#">Reservation</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_owner.present? %>
+              <%= current_owner.email %>
+              <%= link_to "Log Out",  destroy_owner_session_path, method: :delete%><br><br>
+          <% elsif current_customer.present? %>
+              <%= current_customer.email %>
+              <%= link_to "Log Out",  destroy_customer_session_path, method: :delete%><br><br>
+          <% else %>
+              <%= link_to "Owner Log In",  new_owner_session_path%>
+              <%= link_to "Owner Sign Up",  new_owner_registration_path%>
+              <%= link_to "Customer Log In",  new_customer_session_path%>
+              <%= link_to "Customer Sign Up",  new_customer_registration_path%>
+          <% end %>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+
+
 
   <body>
     <%= yield %>

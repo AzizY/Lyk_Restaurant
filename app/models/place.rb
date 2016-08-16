@@ -12,5 +12,6 @@ class Place < ApplicationRecord
 
   belongs_to :category
   belongs_to :owner
-  has_many :comments
+  has_many :comments, dependent: :destroy
+  has_many :reservations
 end

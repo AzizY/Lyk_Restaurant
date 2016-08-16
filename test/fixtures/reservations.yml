@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2016-08-16
+  number_of_people: 1
+  customer: 
+  place: 
+
+two:
+  date: 2016-08-16
+  number_of_people: 1
+  customer: 
+  place: 

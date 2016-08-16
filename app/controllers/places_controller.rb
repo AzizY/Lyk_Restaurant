@@ -1,4 +1,7 @@
 class PlacesController < ApplicationController
+  before_action :authenticate_owner!, except: [:show, :index]
+  before_action :set_place, only: [:show, :update, :edit, :destroy]
+
   def index
     @Places = Place.all
   end
@@ -13,7 +16,7 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @place = Place.create(place_params)
+    @place = current_owner.places.new(place_params)
 
     if @place.save
       redirect_to place_path(@place)
@@ -52,6 +55,6 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
   end
   def place_params
-    params.require(:place).permit(:name, :address, :city, :phone_number,:contact_mail, :description, :estanlished_at, :category_id)
+    params.require(:place).permit(:name, :address, :city, :phone_number,:contact_mail, :description, :estanlished_at, :category_id, :owner_id)
   end
 end

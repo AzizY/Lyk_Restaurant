@@ -11,10 +11,11 @@
     <p>
       <strong>Comment:</strong>
       <%= comment.body %>
-
+      <% if current_customer.present? && current_customer.id == comment.customer.id %>
     <%= link_to 'Destroy Comment', [comment.place, comment],
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %></p>
+      <% end %>
 <% end %>
 <p>
 
@@ -33,5 +34,25 @@
     </p>
 <% end %>
 </div>
+
+<% @place.reservations.each do |r| %>
+
+    <h1>Reservations</h1>
+    <% if current_customer.present? && current_customer.id == r.customer.id %>
+        <p>
+          E-mail :
+          <%= current_customer.email %><br>
+          Date :
+          <%= r.date %><br>
+          People :
+          <%= r.number_of_people %>
+          <%= link_to 'Destroy Reservation', [r.place, r],
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %>
+        </p>
+    <% end %>
+<% end %>
+
+<%= render 'reservations/form' %>
 
 <a href="/places">Back</a>

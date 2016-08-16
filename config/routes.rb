@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :owners
   resources :places do
     resources :comments, only: [:create, :destroy]
+    resources :reservations, only: [:create, :destroy]
   end
   resources :categories, only: [:show, :index]
   root 'places#index'
