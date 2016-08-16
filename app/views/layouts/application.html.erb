@@ -7,14 +7,17 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-    <% if current_user.present? %>
-      <%= current_user.email %>
-      <%= link_to "Log Out",  destroy_user_session_path, method: :delete%>
-
+    <% if current_owner.present? %>
+      <%= current_owner.email %>
+      <%= link_to "Log Out",  destroy_owner_session_path, method: :delete%>
+    <% elsif current_customer.present? %>
+    <%= current_customer.email %>
+    <%= link_to "Log Out",  destroy_customer_session_path, method: :delete%>
     <% else %>
-    <%= link_to "Log In",  new_user_session_path%>
-    <%= link_to "Sign Up",  new_user_registration_path%>
-
+    <%= link_to "Owner Log In",  new_owner_session_path%>
+    <%= link_to "Owner Sign Up",  new_owner_registration_path%>
+    <%= link_to "Customer Log In",  new_customer_session_path%>
+    <%= link_to "Customer Sign Up",  new_customer_registration_path%>
 <% end %>
 
   <body>

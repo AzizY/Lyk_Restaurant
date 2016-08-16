@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :customers
+  devise_for :owners
   resources :places do
     resources :comments, only: [:create, :destroy]
   end

@@ -11,5 +11,6 @@ class Place < ApplicationRecord
   end
 
   belongs_to :category
+  belongs_to :owner
   has_many :comments
 end
