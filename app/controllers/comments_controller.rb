@@ -8,8 +8,10 @@ class CommentsController < ApplicationController
     @comment = @place.comments.new(comment_params)
     @comment.customer = current_customer
 
-    @comment.save
+    if @comment.save
+      CommentMailer.new_comment(@place).deliver_now
       redirect_to place_path(@place)
+    end
   end
 
   def destroy
