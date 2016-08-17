@@ -31,6 +31,9 @@
     <%= f.select :category_id, @categories %>
     </p>
     <p>
+      <%= f.collection_check_boxes(:food_ids, @foods, :id, :name) %>
+    </p>
+    <p>
       <%= f.submit :save %>
     </p>
 

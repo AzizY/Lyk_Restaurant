@@ -5,7 +5,7 @@
 <b>Category:</b><td><%= @place.category.name%></td><br>
 <b>E-mail:</b><td><%= @place.contact_mail%></td><br>
 <b>Established at:</b><td><%= @place.estanlished_at%></td><br>
-
+<b>Foods:</b> <td><%= @place.foods.collect { |x| x.name }%></td>
 
 <% @place.comments.each do |comment| %>
     <p>
@@ -26,7 +26,7 @@
 
 
     <p>
-      <%= f.label :Comment  %>
+      <%= f.label :Comment  %><br>
       <%= f.text_field :body, size: 70%>
     </p>
     <p>
@@ -34,18 +34,16 @@
     </p>
 <% end %>
 </div>
-
+<h1>Reservations</h1>
 <% @place.reservations.each do |r| %>
-
-    <h1>Reservations</h1>
-    <% if current_customer.present? && current_customer.id == r.customer.id %>
         <p>
           E-mail :
-          <%= current_customer.email %><br>
+          <%= r.customer.email %><br>
           Date :
           <%= r.date %><br>
           People :
           <%= r.number_of_people %>
+          <% if current_customer.present? && current_customer.id == r.customer.id %>
           <%= link_to 'Destroy Reservation', [r.place, r],
                       method: :delete,
                       data: { confirm: 'Are you sure?' } %>

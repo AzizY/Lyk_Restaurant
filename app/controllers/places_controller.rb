@@ -49,12 +49,13 @@ class PlacesController < ApplicationController
   private
   def load_categories
     @categories = Category.all.collect {|c| [c.name, c.id ] }
+    @foods = Food.all
   end
 
   def set_place
     @place = Place.find(params[:id])
   end
   def place_params
-    params.require(:place).permit(:name, :address, :city, :phone_number,:contact_mail, :description, :estanlished_at, :category_id, :owner_id)
+    params.require(:place).permit(:name, :address, :city, :phone_number,:contact_mail, :description, :estanlished_at, :category_id, :owner_id, food_ids: [])
   end
 end

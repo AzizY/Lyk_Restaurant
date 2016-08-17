@@ -7,7 +7,9 @@ class CommentsController < ApplicationController
     @place = Place.find(params[:place_id])
     @comment = @place.comments.new(comment_params)
     @comment.customer = current_customer
-    redirect_to place_path(@place)
+
+    @comment.save
+      redirect_to place_path(@place)
   end
 
   def destroy

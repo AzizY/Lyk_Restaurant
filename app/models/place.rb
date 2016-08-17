@@ -14,4 +14,5 @@ class Place < ApplicationRecord
   belongs_to :owner
   has_many :comments, dependent: :destroy
   has_many :reservations
+  has_and_belongs_to_many :foods
 end
