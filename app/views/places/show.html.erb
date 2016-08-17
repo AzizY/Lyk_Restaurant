@@ -5,7 +5,11 @@
 <b>Category:</b><td><%= @place.category.name%></td><br>
 <b>E-mail:</b><td><%= @place.contact_mail%></td><br>
 <b>Established at:</b><td><%= @place.estanlished_at%></td><br>
-<b>Foods:</b> <td><%= @place.foods.collect { |x| x.name }%></td>
+<b>Foods:</b> <td><%= @place.foods.collect { |x| x.name }%></td><br>
+<b> Facebook:</b> <%= @place.social_profile.facebook %><br>
+<b> Twitter:</b> <%= @place.social_profile.twitter %><br>
+<b> Instagram:</b> <%= @place.social_profile.instagram %><br>
+<b> Foursquare:</b> <%= @place.social_profile.foursquare %><br>
 
 <% @place.comments.each do |comment| %>
     <p>
@@ -20,6 +24,7 @@
 <p>
 
 </p>
+<% if current_customer %>
 <h2>Add a comment:</h2>
 <div class="panel-body">
 <%= form_for([@place, @place.comments.new]) do |f| %>
@@ -33,6 +38,7 @@
       <%= f.submit %>
     </p>
 <% end %>
+  <% end %>
 </div>
 <h1>Reservations</h1>
 <% @place.reservations.each do |r| %>

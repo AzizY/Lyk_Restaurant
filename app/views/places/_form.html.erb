@@ -33,6 +33,19 @@
     <p>
       <%= f.collection_check_boxes(:food_ids, @foods, :id, :name) %>
     </p>
+
+    <h3>Social Profile</h3>
+    <%= f.fields_for :social_profile do |sf| %>
+        <%= sf.label :facebook %>
+        <%= sf.text_field :facebook %><br>
+        <%= sf.label :twitter %>
+        <%= sf.text_field :twitter %><br>
+        <%= sf.label :instagram %>
+        <%= sf.text_field :instagram %><br>
+        <%= sf.label :foursquare %>
+        <%= sf.text_field :foursquare %><br>
+
+    <% end %>
     <p>
       <%= f.submit :save %>
     </p>

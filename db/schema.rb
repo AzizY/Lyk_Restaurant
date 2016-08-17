@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817073041) do
+ActiveRecord::Schema.define(version: 20160817085118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,10 +100,22 @@ ActiveRecord::Schema.define(version: 20160817073041) do
     t.index ["place_id"], name: "index_reservations_on_place_id", using: :btree
   end
 
+  create_table "social_profiles", force: :cascade do |t|
+    t.integer  "place_id"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "instagram"
+    t.string   "foursquare"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_social_profiles_on_place_id", using: :btree
+  end
+
   add_foreign_key "comments", "customers"
   add_foreign_key "comments", "places"
   add_foreign_key "places", "categories"
   add_foreign_key "places", "owners"
   add_foreign_key "reservations", "customers"
   add_foreign_key "reservations", "places"
+  add_foreign_key "social_profiles", "places"
 end

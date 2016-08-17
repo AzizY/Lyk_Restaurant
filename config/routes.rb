@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :customers
   devise_for :owners
   resources :places do
+    collection do
+            get :mine
+    end
+
     resources :comments, only: [:create, :destroy]
     resources :reservations, only: [:create, :destroy]
   end

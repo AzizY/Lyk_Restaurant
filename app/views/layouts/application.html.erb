@@ -22,6 +22,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <% if current_owner.present? %>
+              <%= link_to "My Places", mine_places_path  %>
               <%= current_owner.email %>
               <%= link_to "Log Out",  destroy_owner_session_path, method: :delete%><br><br>
           <% elsif current_customer.present? %>

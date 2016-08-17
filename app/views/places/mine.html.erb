@@ -1,0 +1,19 @@
+<h2> All Places</h2><hr>
+
+<% @places.each do |place|%>
+    <tr>
+      <b>Name:</b><td><a href="<%= place_path(place.id)%>"><%= place.name%></a></td><br>
+      <b>Phone:</b><td><%= place.phone_number%></td><br>
+      <% if current_owner.presence && current_owner.id == place.owner_id %>
+          <a href="<%= edit_place_path(place.id) %>">Edit</a>
+          <%= link_to "Delete", place_path(place),
+                      method: :delete,
+                      data: {confirm: 'Are you sure?'}  %><br><br>
+      <% end %>
+    </tr>
+    <hr>
+<% end %>
+<% if current_owner %>
+    <a href="/places/new" >Add Place</a><br>
+<% end %>
+<%= link_to "Categories", categories_path %>

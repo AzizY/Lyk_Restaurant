@@ -1,9 +1,9 @@
 class PlacesController < ApplicationController
   before_action :authenticate_owner!, except: [:show, :index]
   before_action :set_place, only: [:show, :update, :edit, :destroy]
-
+  before_action :authorize_owner!, only: [:edit, :update, :destroy]
   def index
-    @Places = Place.all
+    @places = Place.all
   end
 
   def show
@@ -12,7 +12,12 @@ class PlacesController < ApplicationController
 
   def new
     @place = Place.new
+    @place.build_social_profile
     load_categories
+  end
+
+  def mine
+    @places = current_owner.places
   end
 
   def create
@@ -56,6 +61,12 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
   end
   def place_params
-    params.require(:place).permit(:name, :address, :city, :phone_number,:contact_mail, :description, :estanlished_at, :category_id, :owner_id, food_ids: [])
+    params.require(:place).permit(:name, :address, :city, :phone_number,:contact_mail,
+                                  :description, :estanlished_at, :category_id, :owner_id, food_ids: [],
+                                  social_profile_attributes: [:id, :facebook, :twitter, :instagram, :foursquare])
+  end
+
+  def authorize_owner!
+    redirect_to @place, notice: "Not authorized" unless @place.owner_id == current_owner.id
   end
 end

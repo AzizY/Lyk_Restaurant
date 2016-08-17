@@ -1,4 +1,4 @@
-
+<% if current_customer %>
 <h1>Make Reservation</h1>
 
 <%= form_for [@place, @place.reservations.build] do |f| %>
@@ -16,4 +16,5 @@
     </p>
 
 
+<% end %>
 <% end %>
